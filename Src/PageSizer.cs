@@ -55,7 +55,7 @@ namespace dks.Web.Helpers
 
 			builder.Append("<div");
 
-			if (!string.IsNullOrEmpty(pageSizerClass))
+			if (!string.IsNullOrWhiteSpace(pageSizerClass))
 			{
 				builder.Append(" class=\"");
 				builder.Append(pageSizerClass);
