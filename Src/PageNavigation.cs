@@ -3,10 +3,11 @@ using System.Text;
 
 namespace dks.Web.Helpers
 {
+
+	// todo: ensure that we don't generate start and end page numbers out of range
 	public class PageNumbers
 	{
-		// todo: validate _pageLinks, should be an odd number so we can have an even number of links before and after the current page
-		private const int _pageLinks = 5;
+		private int _pageLinks = 5;
 		private const string _prev = @"prev";
 		private const string _next = @"next";
 		private const string _dots = @"&hellip;";
@@ -17,7 +18,7 @@ namespace dks.Web.Helpers
 		string urlTemplate;
 		string cssClass;
 
-		// give [currentPage], pageCount=100, we should have links like
+		// given [currentPage], pageCount=100, we should have links like
 		// [1] 2 3 4 5 ... 100 next
 		// prev 1 [2] 3 4 5 ... 100 next
 		// prev 1 2 [3] 4 5 ... 100 next
@@ -44,6 +45,20 @@ namespace dks.Web.Helpers
 
 		public override string ToString()
 		{
+			int _pagePrePostLinks;
+
+			// fix number of pages to show
+			if (_pageLinks < 5)
+			{
+				_pageLinks = 5;
+			}
+			if (_pageLinks % 2 == 0)
+			{
+				_pageLinks += 1;
+			}
+			_pagePrePostLinks = (_pageLinks - 1) / 2;
+
+
 
 			if (currentPage < 0) currentPage = 1;
 			if (pageCount < 0) pageCount = 0;
@@ -67,9 +82,8 @@ namespace dks.Web.Helpers
 			}
 			else
 			{
-				// fixme: the +/- 2 should be calculated based on _pageLinks
-				start = currentPage - 2;
-				end = currentPage + 2;
+				start = currentPage - _pagePrePostLinks;
+				end = currentPage + _pagePrePostLinks;
 			}
 
 			if (currentPage > 1)
