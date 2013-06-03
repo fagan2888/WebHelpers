@@ -1,78 +1,82 @@
 ﻿@using dks.Web.Extensions;
 
-<style type="text/css">
-	.pager
-	{
-		margin-top: 20px;
-		margin-bottom: 20px;
-	}
-
-	.page-sizer
-	{
-		margin-top: 20px;
-		margin-bottom: 20px;
-	}
-
-	.page-numbers
-	{
-		font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
-		border: 1px solid #ccc;
-		color: #808185;
-		display: block;
-		float: left;
-		font-size: 130%;
-		margin-right: 3px;
-		padding: 4px 4px 3px;
-		text-decoration: none;
-	}
-
-		.page-numbers.desc
+<html>
+<head>
+	<title>WebHelpers Demo</title>
+	<style type="text/css">
+		.pager
 		{
-			border: none;
+			margin-top: 20px;
+			margin-bottom: 20px;
 		}
 
-		.page-numbers:hover
+		.page-sizer
 		{
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		.page-numbers
+		{
+			font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+			border: 1px solid #ccc;
+			color: #808185;
+			display: block;
+			float: left;
+			font-size: 130%;
+			margin-right: 3px;
+			padding: 4px 4px 3px;
 			text-decoration: none;
 		}
 
-		.page-numbers.next, .page-numbers.prev
+			.page-numbers.desc
+			{
+				border: none;
+			}
+
+			.page-numbers:hover
+			{
+				text-decoration: none;
+			}
+
+			.page-numbers.next, .page-numbers.prev
+			{
+				border: 1px solid #fff;
+			}
+
+			.page-numbers.current
+			{
+				background-color: #808185;
+				border: 1px solid #808185;
+				color: #fff;
+				font-weight: bold;
+			}
+
+			.page-numbers.dots
+			{
+				border: 1px solid #fff;
+			}
+
+
+		.fl
 		{
-			border: 1px solid #fff;
+			float: left;
 		}
 
-		.page-numbers.current
+		.fr
 		{
-			background-color: #808185;
-			border: 1px solid #808185;
-			color: #fff;
-			font-weight: bold;
+			float: right;
 		}
+	</style>
 
-		.page-numbers.dots
-		{
-			border: 1px solid #fff;
-		}
+</head>
 
-
-	.fl
-	{
-		float: left;
+<body>
+	@{
+		int PageCount = 12;
 	}
-
-	.fr
-	{
-		float: right;
-	}
-</style>
-
-<div>
-	
-@{
-	int PageCount =12;
-}
 	<div style="width: 600px;">
-		@for (int CurrentPage = 1; CurrentPage < PageCount+1; CurrentPage++)
+		@for (int CurrentPage = 1; CurrentPage < PageCount + 1; CurrentPage++)
   {
 			@Html.SimplePager(CurrentPage, PageCount, "/Home/?page={0}", "pager")
 			<br />
@@ -81,7 +85,7 @@
 
 		<br />
 
-		@Html.SimplePageSizer("/Home/?pagesize={0}", 15, PageCount, "page-sizer")
+			@Html.SimplePageSizer("/Home/?pagesize={0}", 15, PageCount, "page-sizer")
 		<br />
 		@Html.SimplePageSizer("/Home/?pagesize={0}", 30, PageCount, "page-sizer")
 		<br />
@@ -89,5 +93,6 @@
 	</div>
 
 
-</div>
 
+</body>
+</html>

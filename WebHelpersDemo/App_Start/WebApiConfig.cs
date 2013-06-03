@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace WebHelpers
+namespace WebHelperDemo
 {
 	public static class WebApiConfig
 	{
