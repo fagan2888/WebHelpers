@@ -3,6 +3,7 @@
 <html>
 <head>
 	<title>WebHelpers Demo</title>
+	
 	<style type="text/css">
 		.pager
 		{
@@ -68,7 +69,9 @@
 			float: right;
 		}
 	</style>
-
+	<link href="~/content/toastr.css" rel="stylesheet" />
+	<script src="~/Scripts/jquery-1.6.4.js"></script>
+	<script src="~/Scripts/toastr.js"></script>
 </head>
 
 <body>
@@ -85,7 +88,7 @@
 
 		<br />
 
-			@Html.SimplePageSizer("/Home/?pagesize={0}", 15, PageCount, "page-sizer")
+		@Html.SimplePageSizer("/Home/?pagesize={0}", 15, PageCount, "page-sizer")
 		<br />
 		@Html.SimplePageSizer("/Home/?pagesize={0}", 30, PageCount, "page-sizer")
 		<br />
@@ -93,6 +96,6 @@
 	</div>
 
 
-
+	@Html.RenderToasts()
 </body>
 </html>
