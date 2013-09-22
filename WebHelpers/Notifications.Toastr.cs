@@ -87,7 +87,7 @@ namespace dks.Web.Extensions
 					controller.TempData[notificationKey] = notifications;
 				}
 
-				notifications.Add(new NotificationMessage() { notification = notification, message = message });
+				notifications.Add(new NotificationMessage() { notification = notification, message = HttpUtility.JavaScriptStringEncode(message) });
 			}
 		}
 
